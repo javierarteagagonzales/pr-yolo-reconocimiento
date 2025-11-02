@@ -284,14 +284,40 @@ def draw_info_panel(frame, track_id, items, score, duration, bbox):
             color, 2)
 
 # =======================
-# BUCLE PRINCIPAL
+# CONFIGURACIÓN DE ENTRADA DE VIDEO
 # =======================
 
-cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+# OPCIÓN 1: Usar cámara web (comentado para pruebas)
+# cap = cv2.VideoCapture(0)
+# cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+# cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+
+# OPCIÓN 2: Usar video local para pruebas
+VIDEO_PATH = "test_video.mp4"  # Cambia esto por la ruta de tu video
+cap = cv2.VideoCapture(VIDEO_PATH)
+
+# Verificar si el video se abrió correctamente
+if not cap.isOpened():
+    print(f"❌ Error: No se pudo abrir el video '{VIDEO_PATH}'")
+    print("\n📝 Instrucciones:")
+    print("   1. Coloca un video en la misma carpeta que este script")
+    print("   2. Renombra el video como 'test_video.mp4' o")
+    print("   3. Cambia la variable VIDEO_PATH en la línea 253 con la ruta correcta")
+    print("\nEjemplos de rutas:")
+    print("   - Windows: VIDEO_PATH = 'C:/Videos/mi_video.mp4'")
+    print("   - Linux/Mac: VIDEO_PATH = '/home/user/videos/mi_video.mp4'")
+    print("   - Relativa: VIDEO_PATH = 'videos/test.mp4'")
+    exit()
+
+# Obtener información del video
+fps = int(cap.get(cv2.CAP_PROP_FPS))
+total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+duration = total_frames / fps if fps > 0 else 0
 
 print("🎥 Sistema de Detección con Tracking Activado")
+print("=" * 50)
+print(f"📹 Video: {VIDEO_PATH}")
+print(f"⏱️  Duración: {duration:.1f} segundos ({total_frames} frames a {fps} FPS)")
 print("=" * 50)
 print("📋 Items detectables:")
 print("   • Gorro/Capucha oscura")
@@ -301,16 +327,30 @@ print("   • Bufanda/Cuello alto")
 print("   • Ropa muy oscura")
 print("   • Guantes oscuros")
 print("   • Rostro completamente cubierto")
-print("\n⌨️ Presiona ESC para salir\n")
+print("\n⌨️ Controles:")
+print("   ESC - Salir")
+print("   ESPACIO - Pausar/Reanudar")
+print("   R - Reiniciar video")
+print("   S - Guardar captura actual")
+print("=" * 50)
+print()
 
 frame_count = 0
+paused = False
 
 while True:
-    ret, frame = cap.read()
-    if not ret:
-        break
-    
-    frame_count += 1
+    if not paused:
+        ret, frame = cap.read()
+        if not ret:
+            print("\n🎬 Video finalizado. Reiniciando...")
+            cap.set(cv2.CAP_PROP_POS_FRAMES, 0)  # Reiniciar video
+            frame_count = 0
+            tracker.tracks.clear()
+            suspicious_scores.clear()
+            last_alert_time.clear()
+            continue
+        
+        frame_count += 1
     
     # Detectar personas
     results = person_model(frame, verbose=False)[0]
@@ -386,18 +426,47 @@ while True:
         draw_info_panel(frame, track_id, items, avg_score, duration, (x1, y1, x2, y2))
     
     # Panel de estadísticas generales
-    cv2.rectangle(frame, (10, 10), (400, 120), (0, 0, 0), -1)
+    stats_height = 150
+    cv2.rectangle(frame, (10, 10), (400, stats_height), (0, 0, 0), -1)
+    
     cv2.putText(frame, f"Personas rastreadas: {len([t for t in tracks.values() if t['frames_missing'] == 0])}", 
                (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
     cv2.putText(frame, f"Sospechosos activos: {suspicious_count}", 
                (20, 75), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-    cv2.putText(frame, "ESC para salir", 
-               (20, 105), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (200, 200, 200), 1)
+    
+    # Progreso del video
+    progress_percentage = (frame_count / total_frames) * 100 if total_frames > 0 else 0
+    cv2.putText(frame, f"Progreso: {progress_percentage:.1f}%", 
+               (20, 110), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (100, 200, 255), 1)
+    
+    # Estado de pausa
+    status_text = "PAUSADO" if paused else "Reproduciendo"
+    status_color = (0, 165, 255) if paused else (200, 200, 200)
+    cv2.putText(frame, status_text, 
+               (20, 135), cv2.FONT_HERSHEY_SIMPLEX, 0.6, status_color, 1)
     
     cv2.imshow("Sistema de Deteccion con Tracking", frame)
     
-    if cv2.waitKey(1) & 0xFF == 27:
+    # Controles de teclado
+    key = cv2.waitKey(1 if not paused else 0) & 0xFF
+    
+    if key == 27:  # ESC - Salir
         break
+    elif key == 32:  # ESPACIO - Pausar/Reanudar
+        paused = not paused
+        print(f"{'⏸️  Pausado' if paused else '▶️  Reanudado'}")
+    elif key == ord('r') or key == ord('R'):  # R - Reiniciar
+        cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+        frame_count = 0
+        tracker.tracks.clear()
+        suspicious_scores.clear()
+        last_alert_time.clear()
+        paused = False
+        print("🔄 Video reiniciado")
+    elif key == ord('s') or key == ord('S'):  # S - Guardar captura
+        filename = f"captura_{int(time.time())}.jpg"
+        cv2.imwrite(filename, frame)
+        print(f"📸 Captura guardada: {filename}")
 
 cap.release()
 cv2.destroyAllWindows()

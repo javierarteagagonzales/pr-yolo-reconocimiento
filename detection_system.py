@@ -1,4 +1,14 @@
 # detection_system.py
+"""
+PASO 1: Sistema de Detección y Guardado de Personas
+====================================================
+Este script:
+- Lee un video y detecta todas las personas
+- Guarda la mejor imagen de cada persona (más nítida/clara)
+- Crea una base de datos en persons_data.json
+- Las imágenes se guardan en detected_persons/
+"""
+
 from ultralytics import YOLO
 import cv2
 import numpy as np
@@ -7,7 +17,6 @@ import time
 import json
 import os
 from pathlib import Path
-import base64
 
 # =======================
 # CONFIGURACIÓN
@@ -17,7 +26,7 @@ import base64
 DETECTED_PERSONS_DIR = "detected_persons"
 DATA_FILE = "persons_data.json"
 
-# Crear directorios
+# Crear directorios si no existen
 Path(DETECTED_PERSONS_DIR).mkdir(exist_ok=True)
 
 # Cargar o crear archivo de datos
@@ -28,29 +37,37 @@ else:
     persons_database = {}
 
 # Modelo YOLO
+print("🔄 Cargando modelo YOLO...")
 person_model = YOLO("yolov8n.pt")
 person_model.to("cpu")
+print("✅ Modelo cargado")
 
-# Clasificadores
+# Clasificadores Haar Cascade (incluidos con OpenCV)
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-# Parámetros
-PERSON_CONFIDENCE = 0.5
-MIN_FRAMES_TO_SAVE = 5  # Frames mínimos antes de guardar
-IMAGE_QUALITY_THRESHOLD = 80  # Umbral de calidad de imagen
-SUSPICIOUS_THRESHOLD = 2
+# Parámetros de detección
+PERSON_CONFIDENCE = 0.5        # Confianza mínima para detectar persona
+MIN_FRAMES_TO_SAVE = 5         # Frames mínimos de tracking antes de guardar
+IMAGE_QUALITY_THRESHOLD = 80   # Umbral de calidad (0-100)
 
 # =======================
 # SISTEMA DE TRACKING
 # =======================
 
 class PersonTracker:
+    """
+    Sistema simple de tracking de personas usando distancia euclidiana
+    """
     def __init__(self):
         self.tracks = {}
         self.next_id = 1
-        self.max_distance = 100
+        self.max_distance = 100  # Distancia máxima para asociar detecciones
         
     def update(self, detections):
+        """
+        Actualiza tracks con nuevas detecciones
+        detections: lista de (x1, y1, x2, y2, conf)
+        """
         current_centers = []
         for det in detections:
             x1, y1, x2, y2, conf = det
@@ -60,6 +77,7 @@ class PersonTracker:
         
         matched_detections = set()
         
+        # Actualizar tracks existentes
         for track_id, track_info in list(self.tracks.items()):
             if track_info['frames_missing'] > 30:
                 del self.tracks[track_id]
@@ -88,6 +106,7 @@ class PersonTracker:
             else:
                 self.tracks[track_id]['frames_missing'] += 1
         
+        # Crear nuevos tracks
         for idx, (cx, cy, det) in enumerate(current_centers):
             if idx not in matched_detections:
                 self.tracks[self.next_id] = {
@@ -110,12 +129,12 @@ class PersonTracker:
 tracker = PersonTracker()
 
 # =======================
-# EVALUACIÓN DE CALIDAD
+# EVALUACIÓN DE CALIDAD DE IMAGEN
 # =======================
 
 def calculate_image_quality(image):
     """
-    Calcula calidad de imagen (0-100)
+    Calcula la calidad de una imagen (0-100)
     Criterios: nitidez, iluminación, tamaño
     """
     if image.size == 0:
@@ -123,20 +142,20 @@ def calculate_image_quality(image):
     
     quality_score = 0
     
-    # 1. Nitidez (usando varianza de Laplaciano)
+    # 1. NITIDEZ - Usando varianza de Laplaciano
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     laplacian_var = cv2.Laplacian(gray, cv2.CV_64F).var()
     sharpness_score = min(laplacian_var / 10, 40)
     quality_score += sharpness_score
     
-    # 2. Iluminación (evitar muy oscuro o muy claro)
+    # 2. ILUMINACIÓN - Evitar muy oscuro o muy claro
     mean_brightness = np.mean(gray)
     if 60 < mean_brightness < 180:
-        quality_score += 30
+        quality_score += 30  # Iluminación ideal
     elif 40 < mean_brightness < 200:
-        quality_score += 15
+        quality_score += 15  # Iluminación aceptable
     
-    # 3. Tamaño (preferir imágenes más grandes)
+    # 3. TAMAÑO - Preferir imágenes más grandes
     size_score = min(image.shape[0] * image.shape[1] / 5000, 30)
     quality_score += size_score
     
@@ -144,7 +163,7 @@ def calculate_image_quality(image):
 
 def has_clear_face(image):
     """
-    Verifica si la imagen tiene un rostro claro
+    Verifica si la imagen tiene un rostro claro visible
     """
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.1, 4, minSize=(50, 50))
@@ -184,17 +203,6 @@ def save_person_to_database(track_id, image, track_info):
     
     return person_id
 
-def mark_as_suspicious(person_id):
-    """
-    Marca una persona como sospechosa en la base de datos
-    """
-    if person_id in persons_database:
-        persons_database[person_id]['is_suspicious'] = True
-        with open(DATA_FILE, 'w') as f:
-            json.dump(persons_database, f, indent=2)
-        return True
-    return False
-
 def load_suspicious_persons():
     """
     Carga lista de personas marcadas como sospechosas
@@ -202,7 +210,7 @@ def load_suspicious_persons():
     return [pid for pid, data in persons_database.items() if data.get('is_suspicious', False)]
 
 # =======================
-# DETECCIÓN Y GUARDADO
+# PROCESAMIENTO DE PERSONAS
 # =======================
 
 def process_person_detection(track_id, person_roi, track_info, frame_count):
@@ -213,10 +221,13 @@ def process_person_detection(track_id, person_roi, track_info, frame_count):
     if track_info['total_frames'] < MIN_FRAMES_TO_SAVE:
         return
     
+    if person_roi is None or person_roi.size == 0:
+        return
+    
     # Calcular calidad de imagen actual
     quality = calculate_image_quality(person_roi)
     
-    # Si tiene rostro claro, agregar bonus
+    # Si tiene rostro claro, agregar bonus de calidad
     if has_clear_face(person_roi):
         quality += 20
     
@@ -234,30 +245,44 @@ def process_person_detection(track_id, person_roi, track_info, frame_count):
             print(f"✅ Persona guardada: {person_id} (Calidad: {track_info['best_quality']:.0f}/100)")
 
 # =======================
-# CONFIGURACIÓN VIDEO
+# CONFIGURACIÓN DE VIDEO
 # =======================
 
-# OPCIÓN 1: Cámara (comentado)
+# OPCIÓN 1: Usar cámara web (comentado por defecto)
 # cap = cv2.VideoCapture(0)
+# cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+# cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
-# OPCIÓN 2: Video local
-VIDEO_PATH = "test_video.mp4"
+# OPCIÓN 2: Usar video local
+VIDEO_PATH = "test_video.mp4"  # Cambia esto por tu video
 cap = cv2.VideoCapture(VIDEO_PATH)
 
 if not cap.isOpened():
-    print(f"❌ Error: No se pudo abrir '{VIDEO_PATH}'")
+    print(f"❌ Error: No se pudo abrir el video '{VIDEO_PATH}'")
+    print("\n📝 Solución:")
+    print("   1. Coloca un video en la misma carpeta que este script")
+    print("   2. Renombra el video como 'test_video.mp4' o")
+    print("   3. Cambia la variable VIDEO_PATH con la ruta correcta")
+    print("\n💡 Ejemplos de rutas:")
+    print("   Windows:  VIDEO_PATH = 'C:/Videos/mi_video.mp4'")
+    print("   Linux:    VIDEO_PATH = '/home/user/videos/mi_video.mp4'")
+    print("   Relativa: VIDEO_PATH = 'videos/personas.mp4'")
     exit()
 
+# Obtener información del video
 fps = int(cap.get(cv2.CAP_PROP_FPS))
 total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+duration = total_frames / fps if fps > 0 else 0
 
+print("\n" + "="*60)
 print("🎥 Sistema de Detección y Registro de Personas")
-print("=" * 60)
+print("="*60)
 print(f"📹 Video: {VIDEO_PATH}")
+print(f"⏱️  Duración: {duration:.1f} segundos ({total_frames} frames a {fps} FPS)")
 print(f"📁 Directorio de imágenes: {DETECTED_PERSONS_DIR}/")
 print(f"📄 Base de datos: {DATA_FILE}")
-print("=" * 60)
-print("ℹ️  El sistema guardará automáticamente:")
+print("="*60)
+print("\nℹ️  El sistema guardará automáticamente:")
 print("   • La mejor imagen de cada persona detectada")
 print("   • Solo imágenes de calidad alta (nitidez + iluminación)")
 print("   • Preferencia por imágenes con rostro visible")
@@ -265,14 +290,13 @@ print("\n⌨️ Controles:")
 print("   ESC - Salir y generar interfaz web")
 print("   ESPACIO - Pausar/Reanudar")
 print("   R - Reiniciar video")
-print("=" * 60)
+print("="*60)
 print()
 
 frame_count = 0
 paused = False
-persons_saved_count = 0
 
-# Cargar personas sospechosas marcadas
+# Cargar personas sospechosas marcadas (si existen)
 suspicious_list = load_suspicious_persons()
 
 # =======================
@@ -288,12 +312,12 @@ while True:
         
         frame_count += 1
     
-    # Detectar personas
+    # Detectar personas con YOLO
     results = person_model(frame, verbose=False)[0]
     
     detections = []
     for box, cls, conf in zip(results.boxes.xyxy, results.boxes.cls, results.boxes.conf):
-        if int(cls) == 0 and conf > PERSON_CONFIDENCE:
+        if int(cls) == 0 and conf > PERSON_CONFIDENCE:  # Clase 0 = persona
             x1, y1, x2, y2 = box.tolist()
             
             # Validar dimensiones mínimas
@@ -309,9 +333,10 @@ while True:
     tracked_count = 0
     suspicious_tracked = 0
     
+    # Procesar cada track
     for track_id, track_info in tracks.items():
         if track_info['frames_missing'] > 0:
-            # Procesar antes de eliminar
+            # Procesar antes de eliminar (para guardar imagen)
             process_person_detection(track_id, None, track_info, frame_count)
             continue
         
@@ -319,6 +344,7 @@ while True:
         x1, y1, x2, y2 = track_info['bbox']
         x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
         
+        # Extraer ROI de la persona
         person_roi = frame[y1:y2, x1:x2]
         if person_roi.size == 0:
             continue
@@ -340,21 +366,21 @@ while True:
             thickness = 2
             label = f"ID:{track_id}"
         
-        # Dibujar
+        # Dibujar bounding box
         cv2.rectangle(frame, (x1, y1), (x2, y2), color, thickness)
         cv2.putText(frame, label, (x1, y1-10), 
                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
         
-        # Mostrar calidad de imagen
+        # Mostrar calidad de imagen actual
         quality_text = f"Q: {track_info['best_quality']:.0f}/100"
         cv2.putText(frame, quality_text, (x1, y2+20), 
                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 1)
         
-        # Indicador de guardado
+        # Indicador de que ya fue guardada (círculo verde)
         if track_info['database_id']:
             cv2.circle(frame, (x2-10, y1+10), 5, (0, 255, 0), -1)
     
-    # Panel de estadísticas
+    # Panel de estadísticas en pantalla
     cv2.rectangle(frame, (10, 10), (500, 150), (0, 0, 0), -1)
     cv2.putText(frame, f"Personas en escena: {tracked_count}", 
                (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
@@ -367,23 +393,35 @@ while True:
     cv2.putText(frame, status, (20, 140), 
                cv2.FONT_HERSHEY_SIMPLEX, 0.6, (200, 200, 200), 1)
     
+    # Mostrar frame
     cv2.imshow("Sistema de Deteccion y Registro", frame)
     
+    # Controles de teclado
     key = cv2.waitKey(1 if not paused else 0) & 0xFF
     
-    if key == 27:  # ESC
+    if key == 27:  # ESC - Salir
         break
-    elif key == 32:  # ESPACIO
+    elif key == 32:  # ESPACIO - Pausar/Reanudar
         paused = not paused
-    elif key == ord('r') or key == ord('R'):
+    elif key == ord('r') or key == ord('R'):  # R - Reiniciar
         cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
         frame_count = 0
 
 cap.release()
 cv2.destroyAllWindows()
 
-print("\n✅ Detección finalizada")
+# =======================
+# RESUMEN FINAL
+# =======================
+
+print("\n" + "="*60)
+print("✅ Detección finalizada")
+print("="*60)
 print(f"📊 Total de personas guardadas: {len(persons_database)}")
 print(f"🚨 Personas marcadas como sospechosas: {len(suspicious_list)}")
-print(f"\n💡 Ahora ejecuta: python web_interface.py")
-print("   Para abrir la interfaz web y marcar sospechosos")
+print(f"📁 Imágenes guardadas en: {DETECTED_PERSONS_DIR}/")
+print(f"📄 Base de datos: {DATA_FILE}")
+print("\n💡 Siguiente paso:")
+print("   Ejecuta: python web_interface.py")
+print("   Para abrir la interfaz web y marcar personas como sospechosas")
+print("="*60)

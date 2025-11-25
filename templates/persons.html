@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personas - Sistema de Seguridad</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; display: flex; min-height: 100vh; }
+        .sidebar { width: 250px; background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 20px 0; box-shadow: 2px 0 10px rgba(0,0,0,0.1); position: fixed; height: 100vh; }
+        .sidebar-header { padding: 0 20px 20px; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 20px; }
+        .sidebar-header h2 { font-size: 1.5em; margin-bottom: 5px; }
+        .menu { list-style: none; }
+        .menu-item { padding: 15px 20px; cursor: pointer; transition: all 0.3s; border-left: 4px solid transparent; display: flex; align-items: center; gap: 10px; }
+        .menu-item:hover { background: rgba(255,255,255,0.1); border-left-color: white; }
+        .menu-item.active { background: rgba(255,255,255,0.15); border-left-color: white; }
+        .main-content { margin-left: 250px; flex: 1; padding: 30px; }
+        .header { background: white; padding: 20px 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        .filters { display: flex; gap: 15px; margin-bottom: 30px; }
+        .filter-btn { padding: 12px 30px; border: none; border-radius: 25px; font-size: 1em; cursor: pointer; transition: all 0.3s; font-weight: 600; }
+        .filter-btn.active { background: #667eea; color: white; }
+        .filter-btn:not(.active) { background: white; color: #666; }
+        .persons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .person-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: all 0.3s; border: 3px solid transparent; }
+        .person-card:hover { transform: translateY(-5px); }
+        .person-card.suspicious { border-color: #e74c3c; }
+        .image-container { width: 100%; height: 300px; overflow: hidden; background: #f0f0f0; position: relative; }
+        .person-card img { width: 100%; height: 100%; object-fit: cover; }
+        .suspicious-badge { position: absolute; top: 10px; right: 10px; background: #e74c3c; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; }
+        .person-info { padding: 20px; }
+        .person-info h3 { color: #333; margin-bottom: 10px; }
+        .person-info p { color: #666; font-size: 0.9em; margin-bottom: 8px; }
+        .checkbox-container { margin-top: 15px; display: flex; align-items: center; gap: 10px; }
+        .checkbox-container input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; }
+        .checkbox-container label { cursor: pointer; font-weight: 600; color: #e74c3c; }
+        .notification { position: fixed; top: 20px; right: 20px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 1000; min-width: 300px; animation: slideIn 0.3s; }
+        .notification.success { border-left: 5px solid #2ecc71; }
+        @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>🛡️ SecureVision</h2>
+            <p>Sistema de Seguridad</p>
+        </div>
+        <ul class="menu">
+            <li class="menu-item" onclick="navigate('/')"><span>📊</span> Dashboard</li>
+            <li class="menu-item active" onclick="navigate('/persons')"><span>👥</span> Personas</li>
+            <li class="menu-item" onclick="navigate('/reports')"><span>📄</span> Reportes</li>
+            <li class="menu-item" onclick="navigate('/events')"><span>📋</span> Eventos</li>
+            <li class="menu-item" onclick="navigate('/settings')"><span>⚙️</span> Configuración</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>👥 Gestión de Personas</h1>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterPersons('all')">Todas</button>
+            <button class="filter-btn" onclick="filterPersons('suspicious')">Sospechosas</button>
+            <button class="filter-btn" onclick="filterPersons('normal')">Normales</button>
+        </div>
+
+        <div id="persons-container" class="persons-grid">
+            <p style="text-align: center; color: #999;">Cargando personas...</p>
+        </div>
+    </div>
+
+    <script>
+        let allPersons = {};
+        let currentFilter = 'all';
+
+        function navigate(url) { window.location.href = url; }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `<strong>${message}</strong>`;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 4000);
+        }
+
+        async function loadPersons() {
+            try {
+                const response = await fetch('/api/persons');
+                allPersons = await response.json();
+                renderPersons();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function renderPersons() {
+            const container = document.getElementById('persons-container');
+            let filtered = Object.entries(allPersons);
+
+            if (currentFilter === 'suspicious') {
+                filtered = filtered.filter(([_, data]) => data.is_suspicious);
+            } else if (currentFilter === 'normal') {
+                filtered = filtered.filter(([_, data]) => !data.is_suspicious);
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #999;">No hay personas en esta categoría</p>';
+                return;
+            }
+
+            filtered.sort((a, b) => b[1].timestamp - a[1].timestamp);
+            container.innerHTML = filtered.map(([personId, data]) => {
+                const imagePath = data.image_path.split('/').pop();
+                return `
+                    <div class="person-card ${data.is_suspicious ? 'suspicious' : ''}">
+                        <div class="image-container">
+                            <img src="/images/${imagePath}" alt="Persona ${data.track_id}">
+                            ${data.is_suspicious ? '<div class="suspicious-badge">⚠️ SOSPECHOSO</div>' : ''}
+                        </div>
+                        <div class="person-info">
+                            <h3>Persona #${data.track_id}</h3>
+                            <p><strong>ID:</strong> ${personId}</p>
+                            <p><strong>Fecha:</strong> ${data.date}</p>
+                            <p><strong>Frames:</strong> ${data.frames_tracked}</p>
+                            <p><strong>Duración:</strong> ${data.duration.toFixed(1)}s</p>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="check-${personId}" 
+                                       ${data.is_suspicious ? 'checked' : ''}
+                                       onchange="toggleSuspicious('${personId}', this.checked)">
+                                <label for="check-${personId}">Marcar como sospechoso</label>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function toggleSuspicious(personId, isSuspicious) {
+            try {
+                const response = await fetch(`/api/persons/${personId}/mark`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ is_suspicious: isSuspicious })
+                });
+
+                if (response.ok) {
+                    allPersons[personId].is_suspicious = isSuspicious;
+                    renderPersons();
+                    showNotification(isSuspicious ? '🚨 Persona marcada como SOSPECHOSA' : '✅ Desmarcada como normal');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function filterPersons(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderPersons();
+        }
+
+        loadPersons();
+        setInterval(loadPersons, 5000);
+    </script>
+</body>
+</html>

@@ -40,6 +40,22 @@
             margin-bottom: 10px;
         }
         
+        .debug-info {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .debug-info code {
+            background: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
         .stats {
             display: flex;
             gap: 20px;
@@ -133,12 +149,21 @@
             overflow: hidden;
             background: #f0f0f0;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .person-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        
+        .person-card .image-error {
+            color: #999;
+            text-align: center;
+            padding: 20px;
         }
         
         .suspicious-badge {
@@ -226,6 +251,104 @@
             font-size: 1.2em;
             color: #667eea;
         }
+        
+        .error-message {
+            background: #ffe6e6;
+            border: 2px solid #e74c3c;
+            color: #c0392b;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .refresh-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        
+        .refresh-btn:hover {
+            background: #5568d3;
+        }
+        
+        .tracking-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .tracking-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+        
+        .tracking-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1000;
+            min-width: 300px;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        .notification.success {
+            border-left: 5px solid #2ecc71;
+        }
+        
+        .notification.error {
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .notification.warning {
+            border-left: 5px solid #f39c12;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .tracking-section {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .tracking-section h3 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -234,6 +357,11 @@
             <h1>🎥 Sistema de Gestión de Personas Detectadas</h1>
             <p style="color: #666; margin-top: 10px;">Revisa y marca personas sospechosas</p>
         </header>
+        
+        <div class="debug-info" id="debug-info">
+            <strong>🔍 Información del Sistema:</strong><br>
+            Cargando información...
+        </div>
         
         <div class="stats">
             <div class="stat-card">
@@ -254,6 +382,7 @@
             <button class="filter-btn active" onclick="filterPersons('all')">Todas</button>
             <button class="filter-btn" onclick="filterPersons('suspicious')">Sospechosas</button>
             <button class="filter-btn" onclick="filterPersons('normal')">Normales</button>
+            <button class="refresh-btn" onclick="forceReload()">🔄 Recargar</button>
         </div>
         
         <div id="persons-container" class="loading">
@@ -265,18 +394,55 @@
         let allPersons = {};
         let currentFilter = 'all';
         
+        // Cargar información de debug
+        async function loadDebugInfo() {
+            try {
+                const response = await fetch('/api/debug');
+                const info = await response.json();
+                
+                const debugDiv = document.getElementById('debug-info');
+                debugDiv.innerHTML = `
+                    <strong>🔍 Información del Sistema:</strong><br>
+                    • Archivo de datos: <code>${info.data_file_exists ? '✅ Existe' : '❌ No existe'}</code><br>
+                    • Directorio de imágenes: <code>${info.images_dir_exists ? '✅ Existe' : '❌ No existe'}</code><br>
+                    • Personas en BD: <code>${info.persons_count}</code><br>
+                    • Imágenes disponibles: <code>${info.images_count}</code>
+                `;
+                
+                console.log('📊 Debug Info:', info);
+            } catch (error) {
+                console.error('Error loading debug info:', error);
+            }
+        }
+        
         // Cargar datos al iniciar
         async function loadData() {
             try {
+                console.log('🔄 Cargando personas...');
+                
                 const response = await fetch('/api/persons');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 allPersons = await response.json();
+                
+                console.log(`✅ Cargadas ${Object.keys(allPersons).length} personas:`, allPersons);
                 
                 await updateStats();
                 renderPersons();
+                await loadDebugInfo();
             } catch (error) {
-                console.error('Error loading data:', error);
-                document.getElementById('persons-container').innerHTML = 
-                    '<div class="empty-state"><h2>Error al cargar datos</h2></div>';
+                console.error('❌ Error loading data:', error);
+                document.getElementById('persons-container').innerHTML = `
+                    <div class="error-message">
+                        <h2>❌ Error al cargar datos</h2>
+                        <p>${error.message}</p>
+                        <p>Verifica que el archivo <code>persons_data.json</code> existe y tiene datos.</p>
+                        <button class="refresh-btn" onclick="forceReload()">Reintentar</button>
+                    </div>
+                `;
             }
         }
         
@@ -307,8 +473,15 @@
                 filtered = filtered.filter(([_, data]) => !data.is_suspicious);
             }
             
+            console.log(`📋 Mostrando ${filtered.length} personas (filtro: ${currentFilter})`);
+            
             if (filtered.length === 0) {
-                container.innerHTML = '<div class="empty-state"><h2>No hay personas en esta categoría</h2></div>';
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h2>No hay personas en esta categoría</h2>
+                        <p>Total de personas detectadas: ${Object.keys(allPersons).length}</p>
+                    </div>
+                `;
                 return;
             }
             
@@ -329,15 +502,22 @@
             const card = document.createElement('div');
             card.className = `person-card ${data.is_suspicious ? 'suspicious' : ''}`;
             
-            const imagePath = data.image_path.replace(/\/g, '/').split('/').pop();
+            // Extraer solo el nombre del archivo
+            const imagePath = data.image_path.replace(/\\/g, '/').split('/').pop();
+            const imageUrl = `/images/${imagePath}`;
+            
+            console.log(`🖼️  Cargando imagen: ${imageUrl}`);
             
             card.innerHTML = `
                 <div class="image-container">
-                    <img src="/images/${imagePath}" alt="Persona ${data.track_id}">
+                    <img src="${imageUrl}" 
+                         alt="Persona ${data.track_id}"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"image-error\">❌ Imagen no disponible<br><small>${imagePath}</small></div>'">
                     ${data.is_suspicious ? '<div class="suspicious-badge">⚠️ SOSPECHOSO</div>' : ''}
                 </div>
                 <div class="person-info">
                     <h3>Persona #${data.track_id}</h3>
+                    <p><strong>ID:</strong> ${personId}</p>
                     <p><strong>Fecha:</strong> ${data.date}</p>
                     <p><strong>Frames:</strong> ${data.frames_tracked}</p>
                     <p><strong>Duración:</strong> ${data.duration.toFixed(1)}s</p>
@@ -358,6 +538,8 @@
         // Cambiar estado de sospechoso
         async function toggleSuspicious(personId, isSuspicious) {
             try {
+                console.log(`🔄 Marcando ${personId} como ${isSuspicious ? 'sospechoso' : 'normal'}...`);
+                
                 const response = await fetch(`/api/mark_suspicious/${personId}`, {
                     method: 'POST',
                     headers: {
@@ -371,10 +553,13 @@
                     await updateStats();
                     renderPersons();
                     
-                    console.log(`✅ Persona ${personId} marcada como ${isSuspicious ? 'sospechosa' : 'normal'}`);
+                    console.log(`✅ Persona ${personId} marcada correctamente`);
+                } else {
+                    console.error('❌ Error en respuesta del servidor');
                 }
             } catch (error) {
-                console.error('Error marking person:', error);
+                console.error('❌ Error marking person:', error);
+                alert('Error al marcar persona. Revisa la consola del navegador.');
             }
         }
         
@@ -391,11 +576,18 @@
             renderPersons();
         }
         
+        // Forzar recarga
+        function forceReload() {
+            console.log('🔄 Forzando recarga...');
+            location.reload();
+        }
+        
         // Cargar datos al iniciar
+        console.log('🚀 Iniciando aplicación...');
         loadData();
         
-        // Recargar cada 5 segundos
-        setInterval(loadData, 5000);
+        // Recargar cada 10 segundos
+        setInterval(loadData, 10000);
     </script>
 </body>
 </html>

@@ -1,0 +1,1342 @@
+{
+  "person_1762404221_1": {
+    "id": "person_1762404221_1",
+    "track_id": 1,
+    "image_path": "detected_persons/person_1762404221_1.jpg",
+    "timestamp": 1762404221,
+    "date": "2025-11-05 23:43:41",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 18.478162050247192
+  },
+  "person_1762403502_31": {
+    "id": "person_1762403502_31",
+    "track_id": 31,
+    "image_path": "detected_persons/person_1762403502_31.jpg",
+    "timestamp": 1762403502,
+    "date": "2025-11-05 23:31:42",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 5.979660511016846
+  },
+  "person_1762403490_29": {
+    "id": "person_1762403490_29",
+    "track_id": 29,
+    "image_path": "detected_persons/person_1762403490_29.jpg",
+    "timestamp": 1762403490,
+    "date": "2025-11-05 23:31:30",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 11.640249729156494
+  },
+  "person_1762403476_24": {
+    "id": "person_1762403476_24",
+    "track_id": 24,
+    "image_path": "detected_persons/person_1762403476_24.jpg",
+    "timestamp": 1762403476,
+    "date": "2025-11-05 23:31:16",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 11.989223003387451
+  },
+  "person_1762403471_23": {
+    "id": "person_1762403471_23",
+    "track_id": 23,
+    "image_path": "detected_persons/person_1762403471_23.jpg",
+    "timestamp": 1762403471,
+    "date": "2025-11-05 23:31:11",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 7.26877760887146
+  },
+  "person_1762403470_26": {
+    "id": "person_1762403470_26",
+    "track_id": 26,
+    "image_path": "detected_persons/person_1762403470_26.jpg",
+    "timestamp": 1762403470,
+    "date": "2025-11-05 23:31:10",
+    "is_suspicious": false,
+    "frames_tracked": 7,
+    "duration": 3.892223358154297
+  },
+  "person_1762403469_27": {
+    "id": "person_1762403469_27",
+    "track_id": 27,
+    "image_path": "detected_persons/person_1762403469_27.jpg",
+    "timestamp": 1762403469,
+    "date": "2025-11-05 23:31:09",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 2.7429614067077637
+  },
+  "person_1762403465_21": {
+    "id": "person_1762403465_21",
+    "track_id": 21,
+    "image_path": "detected_persons/person_1762403465_21.jpg",
+    "timestamp": 1762403465,
+    "date": "2025-11-05 23:31:05",
+    "is_suspicious": false,
+    "frames_tracked": 23,
+    "duration": 7.078885078430176
+  },
+  "person_1762403455_19": {
+    "id": "person_1762403455_19",
+    "track_id": 19,
+    "image_path": "detected_persons/person_1762403455_19.jpg",
+    "timestamp": 1762403455,
+    "date": "2025-11-05 23:30:55",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 15.31785249710083
+  },
+  "person_1762403454_20": {
+    "id": "person_1762403454_20",
+    "track_id": 20,
+    "image_path": "detected_persons/person_1762403454_20.jpg",
+    "timestamp": 1762403454,
+    "date": "2025-11-05 23:30:54",
+    "is_suspicious": false,
+    "frames_tracked": 9,
+    "duration": 9.047037601470947
+  },
+  "person_1762403445_17": {
+    "id": "person_1762403445_17",
+    "track_id": 17,
+    "image_path": "detected_persons/person_1762403445_17.jpg",
+    "timestamp": 1762403445,
+    "date": "2025-11-05 23:30:45",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 11.529935121536255
+  },
+  "person_1762403412_14": {
+    "id": "person_1762403412_14",
+    "track_id": 14,
+    "image_path": "detected_persons/person_1762403412_14.jpg",
+    "timestamp": 1762403412,
+    "date": "2025-11-05 23:30:12",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 3.860361099243164
+  },
+  "person_1762403404_13": {
+    "id": "person_1762403404_13",
+    "track_id": 13,
+    "image_path": "detected_persons/person_1762403404_13.jpg",
+    "timestamp": 1762403404,
+    "date": "2025-11-05 23:30:04",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 3.896028995513916
+  },
+  "person_1762403401_12": {
+    "id": "person_1762403401_12",
+    "track_id": 12,
+    "image_path": "detected_persons/person_1762403401_12.jpg",
+    "timestamp": 1762403401,
+    "date": "2025-11-05 23:30:01",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 3.6204450130462646
+  },
+  "person_1762403396_10": {
+    "id": "person_1762403396_10",
+    "track_id": 10,
+    "image_path": "detected_persons/person_1762403396_10.jpg",
+    "timestamp": 1762403396,
+    "date": "2025-11-05 23:29:56",
+    "is_suspicious": false,
+    "frames_tracked": 32,
+    "duration": 10.190197229385376
+  },
+  "person_1762403373_7": {
+    "id": "person_1762403373_7",
+    "track_id": 7,
+    "image_path": "detected_persons/person_1762403373_7.jpg",
+    "timestamp": 1762403373,
+    "date": "2025-11-05 23:29:33",
+    "is_suspicious": false,
+    "frames_tracked": 6,
+    "duration": 9.19004511833191
+  },
+  "person_1762403368_4": {
+    "id": "person_1762403368_4",
+    "track_id": 4,
+    "image_path": "detected_persons/person_1762403368_4.jpg",
+    "timestamp": 1762403368,
+    "date": "2025-11-05 23:29:28",
+    "is_suspicious": true,
+    "frames_tracked": 12,
+    "duration": 9.585131645202637
+  },
+  "person_1762403368_5": {
+    "id": "person_1762403368_5",
+    "track_id": 5,
+    "image_path": "detected_persons/person_1762403368_5.jpg",
+    "timestamp": 1762403368,
+    "date": "2025-11-05 23:29:28",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 6.000234127044678
+  },
+  "person_1762403344_3": {
+    "id": "person_1762403344_3",
+    "track_id": 3,
+    "image_path": "detected_persons/person_1762403344_3.jpg",
+    "timestamp": 1762403344,
+    "date": "2025-11-05 23:29:04",
+    "is_suspicious": false,
+    "frames_tracked": 7,
+    "duration": 20.637245416641235
+  },
+  "person_1762403199_1": {
+    "id": "person_1762403199_1",
+    "track_id": 1,
+    "image_path": "detected_persons/person_1762403199_1.jpg",
+    "timestamp": 1762403199,
+    "date": "2025-11-05 23:26:39",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 17.00849676132202
+  },
+  "person_1762403158_1": {
+    "id": "person_1762403158_1",
+    "track_id": 1,
+    "image_path": "detected_persons/person_1762403158_1.jpg",
+    "timestamp": 1762403158,
+    "date": "2025-11-05 23:25:58",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 18.05471920967102
+  },
+  "person_1762133498_164": {
+    "id": "person_1762133498_164",
+    "track_id": 164,
+    "image_path": "detected_persons/person_1762133498_164.jpg",
+    "timestamp": 1762133498,
+    "date": "2025-11-02 20:31:38",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 35.87140607833862
+  },
+  "person_1762133358_161": {
+    "id": "person_1762133358_161",
+    "track_id": 161,
+    "image_path": "detected_persons/person_1762133358_161.jpg",
+    "timestamp": 1762133358,
+    "date": "2025-11-02 20:29:18",
+    "is_suspicious": false,
+    "frames_tracked": 6,
+    "duration": 10.02158808708191
+  },
+  "person_1762133285_160": {
+    "id": "person_1762133285_160",
+    "track_id": 160,
+    "image_path": "detected_persons/person_1762133285_160.jpg",
+    "timestamp": 1762133285,
+    "date": "2025-11-02 20:28:05",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 24.120584964752197
+  },
+  "person_1762133257_158": {
+    "id": "person_1762133257_158",
+    "track_id": 158,
+    "image_path": "detected_persons/person_1762133257_158.jpg",
+    "timestamp": 1762133257,
+    "date": "2025-11-02 20:27:37",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 27.619306325912476
+  },
+  "person_1762133238_157": {
+    "id": "person_1762133238_157",
+    "track_id": 157,
+    "image_path": "detected_persons/person_1762133238_157.jpg",
+    "timestamp": 1762133238,
+    "date": "2025-11-02 20:27:18",
+    "is_suspicious": false,
+    "frames_tracked": 10,
+    "duration": 12.798371076583862
+  },
+  "person_1762133230_153": {
+    "id": "person_1762133230_153",
+    "track_id": 153,
+    "image_path": "detected_persons/person_1762133230_153.jpg",
+    "timestamp": 1762133230,
+    "date": "2025-11-02 20:27:10",
+    "is_suspicious": false,
+    "frames_tracked": 22,
+    "duration": 26.023351669311523
+  },
+  "person_1762133226_154": {
+    "id": "person_1762133226_154",
+    "track_id": 154,
+    "image_path": "detected_persons/person_1762133226_154.jpg",
+    "timestamp": 1762133226,
+    "date": "2025-11-02 20:27:06",
+    "is_suspicious": false,
+    "frames_tracked": 16,
+    "duration": 16.466635942459106
+  },
+  "person_1762133226_156": {
+    "id": "person_1762133226_156",
+    "track_id": 156,
+    "image_path": "detected_persons/person_1762133226_156.jpg",
+    "timestamp": 1762133226,
+    "date": "2025-11-02 20:27:06",
+    "is_suspicious": false,
+    "frames_tracked": 5,
+    "duration": 8.501571655273438
+  },
+  "person_1762133132_152": {
+    "id": "person_1762133132_152",
+    "track_id": 152,
+    "image_path": "detected_persons/person_1762133132_152.jpg",
+    "timestamp": 1762133132,
+    "date": "2025-11-02 20:25:32",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 25.060643911361694
+  },
+  "person_1762133105_151": {
+    "id": "person_1762133105_151",
+    "track_id": 151,
+    "image_path": "detected_persons/person_1762133105_151.jpg",
+    "timestamp": 1762133105,
+    "date": "2025-11-02 20:25:05",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 8.63618278503418
+  },
+  "person_1762133100_150": {
+    "id": "person_1762133100_150",
+    "track_id": 150,
+    "image_path": "detected_persons/person_1762133100_150.jpg",
+    "timestamp": 1762133100,
+    "date": "2025-11-02 20:25:00",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 9.63646912574768
+  },
+  "person_1762133079_148": {
+    "id": "person_1762133079_148",
+    "track_id": 148,
+    "image_path": "detected_persons/person_1762133079_148.jpg",
+    "timestamp": 1762133079,
+    "date": "2025-11-02 20:24:39",
+    "is_suspicious": false,
+    "frames_tracked": 5,
+    "duration": 3.292069673538208
+  },
+  "person_1762133037_147": {
+    "id": "person_1762133037_147",
+    "track_id": 147,
+    "image_path": "detected_persons/person_1762133037_147.jpg",
+    "timestamp": 1762133037,
+    "date": "2025-11-02 20:23:57",
+    "is_suspicious": false,
+    "frames_tracked": 30,
+    "duration": 7.239248991012573
+  },
+  "person_1762133001_146": {
+    "id": "person_1762133001_146",
+    "track_id": 146,
+    "image_path": "detected_persons/person_1762133001_146.jpg",
+    "timestamp": 1762133001,
+    "date": "2025-11-02 20:23:21",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 9.216942071914673
+  },
+  "person_1762132989_143": {
+    "id": "person_1762132989_143",
+    "track_id": 143,
+    "image_path": "detected_persons/person_1762132989_143.jpg",
+    "timestamp": 1762132989,
+    "date": "2025-11-02 20:23:09",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 15.204982995986938
+  },
+  "person_1762132984_145": {
+    "id": "person_1762132984_145",
+    "track_id": 145,
+    "image_path": "detected_persons/person_1762132984_145.jpg",
+    "timestamp": 1762132984,
+    "date": "2025-11-02 20:23:04",
+    "is_suspicious": false,
+    "frames_tracked": 6,
+    "duration": 8.222648620605469
+  },
+  "person_1762132979_141": {
+    "id": "person_1762132979_141",
+    "track_id": 141,
+    "image_path": "detected_persons/person_1762132979_141.jpg",
+    "timestamp": 1762132979,
+    "date": "2025-11-02 20:22:59",
+    "is_suspicious": false,
+    "frames_tracked": 30,
+    "duration": 10.838280439376831
+  },
+  "person_1762132952_139": {
+    "id": "person_1762132952_139",
+    "track_id": 139,
+    "image_path": "detected_persons/person_1762132952_139.jpg",
+    "timestamp": 1762132952,
+    "date": "2025-11-02 20:22:32",
+    "is_suspicious": false,
+    "frames_tracked": 19,
+    "duration": 6.102209091186523
+  },
+  "person_1762132942_138": {
+    "id": "person_1762132942_138",
+    "track_id": 138,
+    "image_path": "detected_persons/person_1762132942_138.jpg",
+    "timestamp": 1762132942,
+    "date": "2025-11-02 20:22:22",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 3.0343542098999023
+  },
+  "person_1762132883_135": {
+    "id": "person_1762132883_135",
+    "track_id": 135,
+    "image_path": "detected_persons/person_1762132883_135.jpg",
+    "timestamp": 1762132883,
+    "date": "2025-11-02 20:21:23",
+    "is_suspicious": false,
+    "frames_tracked": 7,
+    "duration": 14.645448684692383
+  },
+  "person_1762132881_136": {
+    "id": "person_1762132881_136",
+    "track_id": 136,
+    "image_path": "detected_persons/person_1762132881_136.jpg",
+    "timestamp": 1762132881,
+    "date": "2025-11-02 20:21:21",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 11.381860256195068
+  },
+  "person_1762132868_134": {
+    "id": "person_1762132868_134",
+    "track_id": 134,
+    "image_path": "detected_persons/person_1762132868_134.jpg",
+    "timestamp": 1762132868,
+    "date": "2025-11-02 20:21:08",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 23.349647760391235
+  },
+  "person_1762132798_130": {
+    "id": "person_1762132798_130",
+    "track_id": 130,
+    "image_path": "detected_persons/person_1762132798_130.jpg",
+    "timestamp": 1762132798,
+    "date": "2025-11-02 20:19:58",
+    "is_suspicious": false,
+    "frames_tracked": 37,
+    "duration": 26.060709238052368
+  },
+  "person_1762132796_129": {
+    "id": "person_1762132796_129",
+    "track_id": 129,
+    "image_path": "detected_persons/person_1762132796_129.jpg",
+    "timestamp": 1762132796,
+    "date": "2025-11-02 20:19:56",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 23.732600688934326
+  },
+  "person_1762132796_131": {
+    "id": "person_1762132796_131",
+    "track_id": 131,
+    "image_path": "detected_persons/person_1762132796_131.jpg",
+    "timestamp": 1762132796,
+    "date": "2025-11-02 20:19:56",
+    "is_suspicious": false,
+    "frames_tracked": 16,
+    "duration": 23.955045223236084
+  },
+  "person_1762132769_128": {
+    "id": "person_1762132769_128",
+    "track_id": 128,
+    "image_path": "detected_persons/person_1762132769_128.jpg",
+    "timestamp": 1762132769,
+    "date": "2025-11-02 20:19:29",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 7.506104469299316
+  },
+  "person_1762132763_124": {
+    "id": "person_1762132763_124",
+    "track_id": 124,
+    "image_path": "detected_persons/person_1762132763_124.jpg",
+    "timestamp": 1762132763,
+    "date": "2025-11-02 20:19:23",
+    "is_suspicious": false,
+    "frames_tracked": 43,
+    "duration": 31.9728684425354
+  },
+  "person_1762132705_123": {
+    "id": "person_1762132705_123",
+    "track_id": 123,
+    "image_path": "detected_persons/person_1762132705_123.jpg",
+    "timestamp": 1762132705,
+    "date": "2025-11-02 20:18:25",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 15.550227880477905
+  },
+  "person_1762132662_119": {
+    "id": "person_1762132662_119",
+    "track_id": 119,
+    "image_path": "detected_persons/person_1762132662_119.jpg",
+    "timestamp": 1762132662,
+    "date": "2025-11-02 20:17:42",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 27.50776433944702
+  },
+  "person_1762132655_120": {
+    "id": "person_1762132655_120",
+    "track_id": 120,
+    "image_path": "detected_persons/person_1762132655_120.jpg",
+    "timestamp": 1762132655,
+    "date": "2025-11-02 20:17:35",
+    "is_suspicious": false,
+    "frames_tracked": 21,
+    "duration": 21.07687544822693
+  },
+  "person_1762132641_118": {
+    "id": "person_1762132641_118",
+    "track_id": 118,
+    "image_path": "detected_persons/person_1762132641_118.jpg",
+    "timestamp": 1762132641,
+    "date": "2025-11-02 20:17:21",
+    "is_suspicious": false,
+    "frames_tracked": 5,
+    "duration": 9.053775310516357
+  },
+  "person_1762132638_116": {
+    "id": "person_1762132638_116",
+    "track_id": 116,
+    "image_path": "detected_persons/person_1762132638_116.jpg",
+    "timestamp": 1762132638,
+    "date": "2025-11-02 20:17:18",
+    "is_suspicious": false,
+    "frames_tracked": 20,
+    "duration": 16.531996250152588
+  },
+  "person_1762132616_112": {
+    "id": "person_1762132616_112",
+    "track_id": 112,
+    "image_path": "detected_persons/person_1762132616_112.jpg",
+    "timestamp": 1762132616,
+    "date": "2025-11-02 20:16:56",
+    "is_suspicious": false,
+    "frames_tracked": 10,
+    "duration": 8.776119947433472
+  },
+  "person_1762132616_114": {
+    "id": "person_1762132616_114",
+    "track_id": 114,
+    "image_path": "detected_persons/person_1762132616_114.jpg",
+    "timestamp": 1762132616,
+    "date": "2025-11-02 20:16:56",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 4.780376434326172
+  },
+  "person_1762132605_109": {
+    "id": "person_1762132605_109",
+    "track_id": 109,
+    "image_path": "detected_persons/person_1762132605_109.jpg",
+    "timestamp": 1762132605,
+    "date": "2025-11-02 20:16:45",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 41.611729860305786
+  },
+  "person_1762132599_110": {
+    "id": "person_1762132599_110",
+    "track_id": 110,
+    "image_path": "detected_persons/person_1762132599_110.jpg",
+    "timestamp": 1762132599,
+    "date": "2025-11-02 20:16:39",
+    "is_suspicious": false,
+    "frames_tracked": 7,
+    "duration": 17.476133823394775
+  },
+  "person_1762132595_111": {
+    "id": "person_1762132595_111",
+    "track_id": 111,
+    "image_path": "detected_persons/person_1762132595_111.jpg",
+    "timestamp": 1762132595,
+    "date": "2025-11-02 20:16:35",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 11.76372480392456
+  },
+  "person_1762132577_108": {
+    "id": "person_1762132577_108",
+    "track_id": 108,
+    "image_path": "detected_persons/person_1762132577_108.jpg",
+    "timestamp": 1762132577,
+    "date": "2025-11-02 20:16:17",
+    "is_suspicious": false,
+    "frames_tracked": 23,
+    "duration": 19.812006950378418
+  },
+  "person_1762132523_104": {
+    "id": "person_1762132523_104",
+    "track_id": 104,
+    "image_path": "detected_persons/person_1762132523_104.jpg",
+    "timestamp": 1762132523,
+    "date": "2025-11-02 20:15:23",
+    "is_suspicious": false,
+    "frames_tracked": 8,
+    "duration": 5.905229091644287
+  },
+  "person_1762132492_101": {
+    "id": "person_1762132492_101",
+    "track_id": 101,
+    "image_path": "detected_persons/person_1762132492_101.jpg",
+    "timestamp": 1762132492,
+    "date": "2025-11-02 20:14:52",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 12.163330793380737
+  },
+  "person_1762132491_102": {
+    "id": "person_1762132491_102",
+    "track_id": 102,
+    "image_path": "detected_persons/person_1762132491_102.jpg",
+    "timestamp": 1762132491,
+    "date": "2025-11-02 20:14:51",
+    "is_suspicious": false,
+    "frames_tracked": 10,
+    "duration": 9.095953464508057
+  },
+  "person_1762132485_100": {
+    "id": "person_1762132485_100",
+    "track_id": 100,
+    "image_path": "detected_persons/person_1762132485_100.jpg",
+    "timestamp": 1762132485,
+    "date": "2025-11-02 20:14:45",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 18.19413709640503
+  },
+  "person_1762132479_98": {
+    "id": "person_1762132479_98",
+    "track_id": 98,
+    "image_path": "detected_persons/person_1762132479_98.jpg",
+    "timestamp": 1762132479,
+    "date": "2025-11-02 20:14:39",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 12.595384120941162
+  },
+  "person_1762132478_99": {
+    "id": "person_1762132478_99",
+    "track_id": 99,
+    "image_path": "detected_persons/person_1762132478_99.jpg",
+    "timestamp": 1762132478,
+    "date": "2025-11-02 20:14:38",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 10.98998212814331
+  },
+  "person_1762132459_97": {
+    "id": "person_1762132459_97",
+    "track_id": 97,
+    "image_path": "detected_persons/person_1762132459_97.jpg",
+    "timestamp": 1762132459,
+    "date": "2025-11-02 20:14:19",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 8.196188926696777
+  },
+  "person_1762132454_95": {
+    "id": "person_1762132454_95",
+    "track_id": 95,
+    "image_path": "detected_persons/person_1762132454_95.jpg",
+    "timestamp": 1762132454,
+    "date": "2025-11-02 20:14:14",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 6.5910913944244385
+  },
+  "person_1762132448_90": {
+    "id": "person_1762132448_90",
+    "track_id": 90,
+    "image_path": "detected_persons/person_1762132448_90.jpg",
+    "timestamp": 1762132448,
+    "date": "2025-11-02 20:14:08",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 21.65031147003174
+  },
+  "person_1762132445_92": {
+    "id": "person_1762132445_92",
+    "track_id": 92,
+    "image_path": "detected_persons/person_1762132445_92.jpg",
+    "timestamp": 1762132445,
+    "date": "2025-11-02 20:14:05",
+    "is_suspicious": false,
+    "frames_tracked": 10,
+    "duration": 14.004792928695679
+  },
+  "person_1762132439_94": {
+    "id": "person_1762132439_94",
+    "track_id": 94,
+    "image_path": "detected_persons/person_1762132439_94.jpg",
+    "timestamp": 1762132439,
+    "date": "2025-11-02 20:13:59",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 3.743560791015625
+  },
+  "person_1762132437_87": {
+    "id": "person_1762132437_87",
+    "track_id": 87,
+    "image_path": "detected_persons/person_1762132437_87.jpg",
+    "timestamp": 1762132437,
+    "date": "2025-11-02 20:13:57",
+    "is_suspicious": false,
+    "frames_tracked": 33,
+    "duration": 14.366593360900879
+  },
+  "person_1762132436_91": {
+    "id": "person_1762132436_91",
+    "track_id": 91,
+    "image_path": "detected_persons/person_1762132436_91.jpg",
+    "timestamp": 1762132436,
+    "date": "2025-11-02 20:13:56",
+    "is_suspicious": false,
+    "frames_tracked": 7,
+    "duration": 5.707948923110962
+  },
+  "person_1762132432_89": {
+    "id": "person_1762132432_89",
+    "track_id": 89,
+    "image_path": "detected_persons/person_1762132432_89.jpg",
+    "timestamp": 1762132432,
+    "date": "2025-11-02 20:13:52",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 6.827244520187378
+  },
+  "person_1762132431_86": {
+    "id": "person_1762132431_86",
+    "track_id": 86,
+    "image_path": "detected_persons/person_1762132431_86.jpg",
+    "timestamp": 1762132431,
+    "date": "2025-11-02 20:13:51",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 10.5427827835083
+  },
+  "person_1762132430_85": {
+    "id": "person_1762132430_85",
+    "track_id": 85,
+    "image_path": "detected_persons/person_1762132430_85.jpg",
+    "timestamp": 1762132430,
+    "date": "2025-11-02 20:13:50",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 10.662736177444458
+  },
+  "person_1762132430_88": {
+    "id": "person_1762132430_88",
+    "track_id": 88,
+    "image_path": "detected_persons/person_1762132430_88.jpg",
+    "timestamp": 1762132430,
+    "date": "2025-11-02 20:13:50",
+    "is_suspicious": false,
+    "frames_tracked": 10,
+    "duration": 5.28716516494751
+  },
+  "person_1762132429_84": {
+    "id": "person_1762132429_84",
+    "track_id": 84,
+    "image_path": "detected_persons/person_1762132429_84.jpg",
+    "timestamp": 1762132429,
+    "date": "2025-11-02 20:13:49",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 10.82959508895874
+  },
+  "person_1762132424_83": {
+    "id": "person_1762132424_83",
+    "track_id": 83,
+    "image_path": "detected_persons/person_1762132424_83.jpg",
+    "timestamp": 1762132424,
+    "date": "2025-11-02 20:13:44",
+    "is_suspicious": false,
+    "frames_tracked": 25,
+    "duration": 11.292724847793579
+  },
+  "person_1762132414_82": {
+    "id": "person_1762132414_82",
+    "track_id": 82,
+    "image_path": "detected_persons/person_1762132414_82.jpg",
+    "timestamp": 1762132414,
+    "date": "2025-11-02 20:13:34",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 3.313019275665283
+  },
+  "person_1762132411_81": {
+    "id": "person_1762132411_81",
+    "track_id": 81,
+    "image_path": "detected_persons/person_1762132411_81.jpg",
+    "timestamp": 1762132411,
+    "date": "2025-11-02 20:13:31",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 9.033195495605469
+  },
+  "person_1762132404_80": {
+    "id": "person_1762132404_80",
+    "track_id": 80,
+    "image_path": "detected_persons/person_1762132404_80.jpg",
+    "timestamp": 1762132404,
+    "date": "2025-11-02 20:13:24",
+    "is_suspicious": false,
+    "frames_tracked": 18,
+    "duration": 7.8775107860565186
+  },
+  "person_1762132394_79": {
+    "id": "person_1762132394_79",
+    "track_id": 79,
+    "image_path": "detected_persons/person_1762132394_79.jpg",
+    "timestamp": 1762132394,
+    "date": "2025-11-02 20:13:14",
+    "is_suspicious": false,
+    "frames_tracked": 31,
+    "duration": 13.151000261306763
+  },
+  "person_1762132386_77": {
+    "id": "person_1762132386_77",
+    "track_id": 77,
+    "image_path": "detected_persons/person_1762132386_77.jpg",
+    "timestamp": 1762132386,
+    "date": "2025-11-02 20:13:06",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 7.621538400650024
+  },
+  "person_1762132384_78": {
+    "id": "person_1762132384_78",
+    "track_id": 78,
+    "image_path": "detected_persons/person_1762132384_78.jpg",
+    "timestamp": 1762132384,
+    "date": "2025-11-02 20:13:04",
+    "is_suspicious": false,
+    "frames_tracked": 5,
+    "duration": 4.710996389389038
+  },
+  "person_1762132369_76": {
+    "id": "person_1762132369_76",
+    "track_id": 76,
+    "image_path": "detected_persons/person_1762132369_76.jpg",
+    "timestamp": 1762132369,
+    "date": "2025-11-02 20:12:49",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 16.324727296829224
+  },
+  "person_1762132348_75": {
+    "id": "person_1762132348_75",
+    "track_id": 75,
+    "image_path": "detected_persons/person_1762132348_75.jpg",
+    "timestamp": 1762132348,
+    "date": "2025-11-02 20:12:28",
+    "is_suspicious": false,
+    "frames_tracked": 11,
+    "duration": 8.174045324325562
+  },
+  "person_1762132329_73": {
+    "id": "person_1762132329_73",
+    "track_id": 73,
+    "image_path": "detected_persons/person_1762132329_73.jpg",
+    "timestamp": 1762132329,
+    "date": "2025-11-02 20:12:09",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 7.8767523765563965
+  },
+  "person_1762132314_72": {
+    "id": "person_1762132314_72",
+    "track_id": 72,
+    "image_path": "detected_persons/person_1762132314_72.jpg",
+    "timestamp": 1762132314,
+    "date": "2025-11-02 20:11:54",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 8.609145641326904
+  },
+  "person_1762132287_70": {
+    "id": "person_1762132287_70",
+    "track_id": 70,
+    "image_path": "detected_persons/person_1762132287_70.jpg",
+    "timestamp": 1762132287,
+    "date": "2025-11-02 20:11:27",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 8.799149990081787
+  },
+  "person_1762132283_71": {
+    "id": "person_1762132283_71",
+    "track_id": 71,
+    "image_path": "detected_persons/person_1762132283_71.jpg",
+    "timestamp": 1762132283,
+    "date": "2025-11-02 20:11:23",
+    "is_suspicious": false,
+    "frames_tracked": 6,
+    "duration": 3.9164206981658936
+  },
+  "person_1762132264_69": {
+    "id": "person_1762132264_69",
+    "track_id": 69,
+    "image_path": "detected_persons/person_1762132264_69.jpg",
+    "timestamp": 1762132264,
+    "date": "2025-11-02 20:11:04",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 7.479166507720947
+  },
+  "person_1762132175_67": {
+    "id": "person_1762132175_67",
+    "track_id": 67,
+    "image_path": "detected_persons/person_1762132175_67.jpg",
+    "timestamp": 1762132175,
+    "date": "2025-11-02 20:09:35",
+    "is_suspicious": false,
+    "frames_tracked": 31,
+    "duration": 11.477832555770874
+  },
+  "person_1762132167_60": {
+    "id": "person_1762132167_60",
+    "track_id": 60,
+    "image_path": "detected_persons/person_1762132167_60.jpg",
+    "timestamp": 1762132167,
+    "date": "2025-11-02 20:09:27",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 18.01658034324646
+  },
+  "person_1762132166_66": {
+    "id": "person_1762132166_66",
+    "track_id": 66,
+    "image_path": "detected_persons/person_1762132166_66.jpg",
+    "timestamp": 1762132166,
+    "date": "2025-11-02 20:09:26",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 3.8593015670776367
+  },
+  "person_1762132157_64": {
+    "id": "person_1762132157_64",
+    "track_id": 64,
+    "image_path": "detected_persons/person_1762132157_64.jpg",
+    "timestamp": 1762132157,
+    "date": "2025-11-02 20:09:17",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 2.828200340270996
+  },
+  "person_1762132157_61": {
+    "id": "person_1762132157_61",
+    "track_id": 61,
+    "image_path": "detected_persons/person_1762132157_61.jpg",
+    "timestamp": 1762132157,
+    "date": "2025-11-02 20:09:17",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 7.862689971923828
+  },
+  "person_1762132155_59": {
+    "id": "person_1762132155_59",
+    "track_id": 59,
+    "image_path": "detected_persons/person_1762132155_59.jpg",
+    "timestamp": 1762132155,
+    "date": "2025-11-02 20:09:15",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 7.309898138046265
+  },
+  "person_1762132154_62": {
+    "id": "person_1762132154_62",
+    "track_id": 62,
+    "image_path": "detected_persons/person_1762132154_62.jpg",
+    "timestamp": 1762132154,
+    "date": "2025-11-02 20:09:14",
+    "is_suspicious": false,
+    "frames_tracked": 10,
+    "duration": 4.719939947128296
+  },
+  "person_1762132151_58": {
+    "id": "person_1762132151_58",
+    "track_id": 58,
+    "image_path": "detected_persons/person_1762132151_58.jpg",
+    "timestamp": 1762132151,
+    "date": "2025-11-02 20:09:11",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 8.852670192718506
+  },
+  "person_1762132144_56": {
+    "id": "person_1762132144_56",
+    "track_id": 56,
+    "image_path": "detected_persons/person_1762132144_56.jpg",
+    "timestamp": 1762132144,
+    "date": "2025-11-02 20:09:04",
+    "is_suspicious": false,
+    "frames_tracked": 13,
+    "duration": 3.9607162475585938
+  },
+  "person_1762132130_54": {
+    "id": "person_1762132130_54",
+    "track_id": 54,
+    "image_path": "detected_persons/person_1762132130_54.jpg",
+    "timestamp": 1762132130,
+    "date": "2025-11-02 20:08:50",
+    "is_suspicious": false,
+    "frames_tracked": 9,
+    "duration": 5.610257148742676
+  },
+  "person_1762132062_50": {
+    "id": "person_1762132062_50",
+    "track_id": 50,
+    "image_path": "detected_persons/person_1762132062_50.jpg",
+    "timestamp": 1762132062,
+    "date": "2025-11-02 20:07:42",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 10.853681087493896
+  },
+  "person_1762132060_49": {
+    "id": "person_1762132060_49",
+    "track_id": 49,
+    "image_path": "detected_persons/person_1762132060_49.jpg",
+    "timestamp": 1762132060,
+    "date": "2025-11-02 20:07:40",
+    "is_suspicious": false,
+    "frames_tracked": 22,
+    "duration": 10.61587929725647
+  },
+  "person_1762132057_45": {
+    "id": "person_1762132057_45",
+    "track_id": 45,
+    "image_path": "detected_persons/person_1762132057_45.jpg",
+    "timestamp": 1762132057,
+    "date": "2025-11-02 20:07:37",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 24.987355947494507
+  },
+  "person_1762132053_46": {
+    "id": "person_1762132053_46",
+    "track_id": 46,
+    "image_path": "detected_persons/person_1762132053_46.jpg",
+    "timestamp": 1762132053,
+    "date": "2025-11-02 20:07:33",
+    "is_suspicious": false,
+    "frames_tracked": 33,
+    "duration": 12.187399625778198
+  },
+  "person_1762132022_44": {
+    "id": "person_1762132022_44",
+    "track_id": 44,
+    "image_path": "detected_persons/person_1762132022_44.jpg",
+    "timestamp": 1762132022,
+    "date": "2025-11-02 20:07:02",
+    "is_suspicious": false,
+    "frames_tracked": 49,
+    "duration": 24.510461568832397
+  },
+  "person_1762132006_43": {
+    "id": "person_1762132006_43",
+    "track_id": 43,
+    "image_path": "detected_persons/person_1762132006_43.jpg",
+    "timestamp": 1762132006,
+    "date": "2025-11-02 20:06:46",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 12.272406101226807
+  },
+  "person_1762131973_41": {
+    "id": "person_1762131973_41",
+    "track_id": 41,
+    "image_path": "detected_persons/person_1762131973_41.jpg",
+    "timestamp": 1762131973,
+    "date": "2025-11-02 20:06:13",
+    "is_suspicious": false,
+    "frames_tracked": 20,
+    "duration": 5.294719457626343
+  },
+  "person_1762131973_42": {
+    "id": "person_1762131973_42",
+    "track_id": 42,
+    "image_path": "detected_persons/person_1762131973_42.jpg",
+    "timestamp": 1762131973,
+    "date": "2025-11-02 20:06:13",
+    "is_suspicious": false,
+    "frames_tracked": 5,
+    "duration": 3.040022373199463
+  },
+  "person_1762131969_40": {
+    "id": "person_1762131969_40",
+    "track_id": 40,
+    "image_path": "detected_persons/person_1762131969_40.jpg",
+    "timestamp": 1762131969,
+    "date": "2025-11-02 20:06:09",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 2.6907854080200195
+  },
+  "person_1762131967_39": {
+    "id": "person_1762131967_39",
+    "track_id": 39,
+    "image_path": "detected_persons/person_1762131967_39.jpg",
+    "timestamp": 1762131967,
+    "date": "2025-11-02 20:06:07",
+    "is_suspicious": false,
+    "frames_tracked": 7,
+    "duration": 3.7047269344329834
+  },
+  "person_1762131962_37": {
+    "id": "person_1762131962_37",
+    "track_id": 37,
+    "image_path": "detected_persons/person_1762131962_37.jpg",
+    "timestamp": 1762131962,
+    "date": "2025-11-02 20:06:02",
+    "is_suspicious": false,
+    "frames_tracked": 19,
+    "duration": 5.7061967849731445
+  },
+  "person_1762131907_35": {
+    "id": "person_1762131907_35",
+    "track_id": 35,
+    "image_path": "detected_persons/person_1762131907_35.jpg",
+    "timestamp": 1762131907,
+    "date": "2025-11-02 20:05:07",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 14.904112577438354
+  },
+  "person_1762131897_33": {
+    "id": "person_1762131897_33",
+    "track_id": 33,
+    "image_path": "detected_persons/person_1762131897_33.jpg",
+    "timestamp": 1762131897,
+    "date": "2025-11-02 20:04:57",
+    "is_suspicious": false,
+    "frames_tracked": 16,
+    "duration": 6.747928619384766
+  },
+  "person_1762131896_34": {
+    "id": "person_1762131896_34",
+    "track_id": 34,
+    "image_path": "detected_persons/person_1762131896_34.jpg",
+    "timestamp": 1762131896,
+    "date": "2025-11-02 20:04:56",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 4.228856325149536
+  },
+  "person_1762131884_31": {
+    "id": "person_1762131884_31",
+    "track_id": 31,
+    "image_path": "detected_persons/person_1762131884_31.jpg",
+    "timestamp": 1762131884,
+    "date": "2025-11-02 20:04:44",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 5.297862529754639
+  },
+  "person_1762131872_29": {
+    "id": "person_1762131872_29",
+    "track_id": 29,
+    "image_path": "detected_persons/person_1762131872_29.jpg",
+    "timestamp": 1762131872,
+    "date": "2025-11-02 20:04:32",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 11.17470383644104
+  },
+  "person_1762131857_24": {
+    "id": "person_1762131857_24",
+    "track_id": 24,
+    "image_path": "detected_persons/person_1762131857_24.jpg",
+    "timestamp": 1762131857,
+    "date": "2025-11-02 20:04:17",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 15.934700727462769
+  },
+  "person_1762131850_23": {
+    "id": "person_1762131850_23",
+    "track_id": 23,
+    "image_path": "detected_persons/person_1762131850_23.jpg",
+    "timestamp": 1762131850,
+    "date": "2025-11-02 20:04:10",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 9.279540061950684
+  },
+  "person_1762131849_27": {
+    "id": "person_1762131849_27",
+    "track_id": 27,
+    "image_path": "detected_persons/person_1762131849_27.jpg",
+    "timestamp": 1762131849,
+    "date": "2025-11-02 20:04:09",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 3.4128434658050537
+  },
+  "person_1762131849_26": {
+    "id": "person_1762131849_26",
+    "track_id": 26,
+    "image_path": "detected_persons/person_1762131849_26.jpg",
+    "timestamp": 1762131849,
+    "date": "2025-11-02 20:04:09",
+    "is_suspicious": false,
+    "frames_tracked": 7,
+    "duration": 4.817198276519775
+  },
+  "person_1762131843_21": {
+    "id": "person_1762131843_21",
+    "track_id": 21,
+    "image_path": "detected_persons/person_1762131843_21.jpg",
+    "timestamp": 1762131843,
+    "date": "2025-11-02 20:04:03",
+    "is_suspicious": false,
+    "frames_tracked": 23,
+    "duration": 8.454931020736694
+  },
+  "person_1762131831_19": {
+    "id": "person_1762131831_19",
+    "track_id": 19,
+    "image_path": "detected_persons/person_1762131831_19.jpg",
+    "timestamp": 1762131831,
+    "date": "2025-11-02 20:03:51",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 18.493367195129395
+  },
+  "person_1762131830_20": {
+    "id": "person_1762131830_20",
+    "track_id": 20,
+    "image_path": "detected_persons/person_1762131830_20.jpg",
+    "timestamp": 1762131830,
+    "date": "2025-11-02 20:03:50",
+    "is_suspicious": false,
+    "frames_tracked": 9,
+    "duration": 10.828031301498413
+  },
+  "person_1762131819_17": {
+    "id": "person_1762131819_17",
+    "track_id": 17,
+    "image_path": "detected_persons/person_1762131819_17.jpg",
+    "timestamp": 1762131819,
+    "date": "2025-11-02 20:03:39",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 13.605956315994263
+  },
+  "person_1762131780_14": {
+    "id": "person_1762131780_14",
+    "track_id": 14,
+    "image_path": "detected_persons/person_1762131780_14.jpg",
+    "timestamp": 1762131780,
+    "date": "2025-11-02 20:03:00",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 4.3755950927734375
+  },
+  "person_1762131771_13": {
+    "id": "person_1762131771_13",
+    "track_id": 13,
+    "image_path": "detected_persons/person_1762131771_13.jpg",
+    "timestamp": 1762131771,
+    "date": "2025-11-02 20:02:51",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 4.753214120864868
+  },
+  "person_1762131767_12": {
+    "id": "person_1762131767_12",
+    "track_id": 12,
+    "image_path": "detected_persons/person_1762131767_12.jpg",
+    "timestamp": 1762131767,
+    "date": "2025-11-02 20:02:47",
+    "is_suspicious": false,
+    "frames_tracked": 3,
+    "duration": 4.239071846008301
+  },
+  "person_1762131761_10": {
+    "id": "person_1762131761_10",
+    "track_id": 10,
+    "image_path": "detected_persons/person_1762131761_10.jpg",
+    "timestamp": 1762131761,
+    "date": "2025-11-02 20:02:41",
+    "is_suspicious": false,
+    "frames_tracked": 32,
+    "duration": 11.976048707962036
+  },
+  "person_1762131733_7": {
+    "id": "person_1762131733_7",
+    "track_id": 7,
+    "image_path": "detected_persons/person_1762131733_7.jpg",
+    "timestamp": 1762131733,
+    "date": "2025-11-02 20:02:13",
+    "is_suspicious": false,
+    "frames_tracked": 6,
+    "duration": 11.199646711349487
+  },
+  "person_1762131726_4": {
+    "id": "person_1762131726_4",
+    "track_id": 4,
+    "image_path": "detected_persons/person_1762131726_4.jpg",
+    "timestamp": 1762131726,
+    "date": "2025-11-02 20:02:06",
+    "is_suspicious": false,
+    "frames_tracked": 12,
+    "duration": 11.119349718093872
+  },
+  "person_1762131726_5": {
+    "id": "person_1762131726_5",
+    "track_id": 5,
+    "image_path": "detected_persons/person_1762131726_5.jpg",
+    "timestamp": 1762131726,
+    "date": "2025-11-02 20:02:06",
+    "is_suspicious": false,
+    "frames_tracked": 4,
+    "duration": 6.954893589019775
+  },
+  "person_1762131700_3": {
+    "id": "person_1762131700_3",
+    "track_id": 3,
+    "image_path": "detected_persons/person_1762131700_3.jpg",
+    "timestamp": 1762131700,
+    "date": "2025-11-02 20:01:40",
+    "is_suspicious": false,
+    "frames_tracked": 7,
+    "duration": 24.610351085662842
+  },
+  "person_1762131550_1": {
+    "id": "person_1762131550_1",
+    "track_id": 1,
+    "image_path": "detected_persons/person_1762131550_1.jpg",
+    "timestamp": 1762131550,
+    "date": "2025-11-02 19:59:10",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 18.878164529800415
+  }
+}

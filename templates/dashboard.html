@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema de Seguridad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* SIDEBAR */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-header p {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        .menu {
+            list-style: none;
+        }
+        
+        .menu-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255,255,255,0.1);
+            border-left-color: white;
+        }
+        
+        .menu-item.active {
+            background: rgba(255,255,255,0.15);
+            border-left-color: white;
+        }
+        
+        .menu-item span {
+            font-size: 1.2em;
+        }
+        
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 250px;
+            flex: 1;
+            padding: 30px;
+        }
+        
+        .header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            color: #333;
+        }
+        
+        .status-indicator {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #95a5a6;
+        }
+        
+        .status-dot.active {
+            background: #2ecc71;
+            box-shadow: 0 0 10px #2ecc71;
+        }
+        
+        /* STATS CARDS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .stat-card h3 {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .stat-card .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .stat-card.suspicious {
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .stat-card.suspicious .value {
+            color: #e74c3c;
+        }
+        
+        /* CONTROL PANEL */
+        .control-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .control-panel h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .control-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .control-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        
+        .control-card:hover {
+            border-color: #3498db;
+        }
+        
+        .control-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .control-card p {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* BUTTONS */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-success {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-warning {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        /* NOTIFICATIONS */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1000;
+            min-width: 300px;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        .notification.success { border-left: 5px solid #2ecc71; }
+        .notification.error { border-left: 5px solid #e74c3c; }
+        .notification.warning { border-left: 5px solid #f39c12; }
+        .notification.info { border-left: 5px solid #3498db; }
+        
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* RECENT EVENTS */
+        .events-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .events-panel h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .event-item {
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            background: #f8f9fa;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        
+        .event-item.high { border-left-color: #e74c3c; }
+        .event-item.medium { border-left-color: #f39c12; }
+        .event-item.low { border-left-color: #2ecc71; }
+        
+        .event-time {
+            font-size: 0.85em;
+            color: #999;
+        }
+        
+        .event-description {
+            margin-top: 5px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>🛡️ SecureVision</h2>
+            <p>Sistema de Seguridad</p>
+        </div>
+        <ul class="menu">
+            <li class="menu-item active" onclick="navigate('/')">
+                <span>📊</span> Dashboard
+            </li>
+            <li class="menu-item" onclick="navigate('/persons')">
+                <span>👥</span> Personas
+            </li>
+            <li class="menu-item" onclick="navigate('/reports')">
+                <span>📄</span> Reportes
+            </li>
+            <li class="menu-item" onclick="navigate('/events')">
+                <span>📋</span> Eventos
+            </li>
+            <li class="menu-item" onclick="navigate('/settings')">
+                <span>⚙️</span> Configuración
+            </li>
+        </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>Dashboard Principal</h1>
+            <div class="status-indicator">
+                <div>
+                    <small>Detección</small>
+                    <div class="status-dot" id="detection-status"></div>
+                </div>
+                <div>
+                    <small>Tracking</small>
+                    <div class="status-dot" id="tracking-status"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="icon">👥</div>
+                <h3>Total Personas</h3>
+                <div class="value" id="total-persons">0</div>
+            </div>
+            
+            <div class="stat-card suspicious">
+                <div class="icon">🚨</div>
+                <h3>Sospechosos</h3>
+                <div class="value" id="suspicious-count">0</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="icon">📋</div>
+                <h3>Eventos</h3>
+                <div class="value" id="total-events">0</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="icon">⚠️</div>
+                <h3>Sin Resolver</h3>
+                <div class="value" id="unresolved-events">0</div>
+            </div>
+        </div>
+
+        <!-- CONTROL PANEL -->
+        <div class="control-panel">
+            <h2>🎮 Panel de Control</h2>
+            <div class="control-grid">
+                <!-- DETECTION -->
+                <div class="control-card">
+                    <h3>🎥 Sistema de Detección</h3>
+                    <p>Detecta y registra personas en el video</p>
+                    <div class="control-buttons">
+                        <button class="btn btn-success" id="start-detection" onclick="startDetection()">
+                            ▶️ Iniciar
+                        </button>
+                        <button class="btn btn-danger" id="stop-detection" onclick="stopDetection()" disabled>
+                            ⏹️ Detener
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TRACKING -->
+                <div class="control-card">
+                    <h3>🎯 Sistema de Tracking</h3>
+                    <p>Rastrea personas marcadas como sospechosas</p>
+                    <div class="control-buttons">
+                        <button class="btn btn-warning" id="start-tracking" onclick="startTracking()">
+                            ▶️ Iniciar
+                        </button>
+                        <button class="btn btn-danger" id="stop-tracking" onclick="stopTracking()" disabled>
+                            ⏹️ Detener
+                        </button>
+                    </div>
+                </div>
+
+                <!-- REPORTS -->
+                <div class="control-card">
+                    <h3>📄 Generación de Reportes</h3>
+                    <p>Genera reportes del sistema</p>
+                    <div class="control-buttons">
+                        <button class="btn btn-primary" onclick="generateReport()">
+                            📊 Generar Reporte
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RECENT EVENTS -->
+        <div class="events-panel">
+            <h2>📋 Eventos Recientes</h2>
+            <div id="recent-events">
+                <p style="color: #999; text-align: center;">Cargando eventos...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // NAVEGACIÓN
+        function navigate(url) {
+            window.location.href = url;
+        }
+
+        // NOTIFICACIONES
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `<strong>${message}</strong>`;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease-out reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+
+        // ACTUALIZAR ESTADÍSTICAS
+        async function updateStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+                
+                document.getElementById('total-persons').textContent = stats.total_persons;
+                document.getElementById('suspicious-count').textContent = stats.suspicious_count;
+                document.getElementById('total-events').textContent = stats.total_events;
+                document.getElementById('unresolved-events').textContent = stats.unresolved_events;
+                
+                // Actualizar estado de procesos
+                const detectionStatus = document.getElementById('detection-status');
+                const trackingStatus = document.getElementById('tracking-status');
+                
+                if (stats.detection_running) {
+                    detectionStatus.classList.add('active');
+                    document.getElementById('start-detection').disabled = true;
+                    document.getElementById('stop-detection').disabled = false;
+                } else {
+                    detectionStatus.classList.remove('active');
+                    document.getElementById('start-detection').disabled = false;
+                    document.getElementById('stop-detection').disabled = true;
+                }
+                
+                if (stats.tracking_running) {
+                    trackingStatus.classList.add('active');
+                    document.getElementById('start-tracking').disabled = true;
+                    document.getElementById('stop-tracking').disabled = false;
+                } else {
+                    trackingStatus.classList.remove('active');
+                    document.getElementById('start-tracking').disabled = false;
+                    document.getElementById('stop-tracking').disabled = true;
+                }
+                
+            } catch (error) {
+                console.error('Error actualizando estadísticas:', error);
+            }
+        }
+
+        // ACTUALIZAR EVENTOS
+        async function updateEvents() {
+            try {
+                const response = await fetch('/api/events?limit=10');
+                const events = await response.json();
+                
+                const container = document.getElementById('recent-events');
+                
+                if (events.length === 0) {
+                    container.innerHTML = '<p style="color: #999; text-align: center;">No hay eventos recientes</p>';
+                    return;
+                }
+                
+                container.innerHTML = events.map(event => `
+                    <div class="event-item ${event.severity.toLowerCase()}">
+                        <div class="event-time">${new Date(event.created_at).toLocaleString('es-ES')}</div>
+                        <div class="event-description">
+                            <strong>${event.event_type}</strong>: ${event.description}
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Error actualizando eventos:', error);
+            }
+        }
+
+        // INICIAR DETECCIÓN
+        async function startDetection() {
+            try {
+                const response = await fetch('/api/process/detection/start', { method: 'POST' });
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification('✅ Detección iniciada', 'success');
+                    updateStats();
+                } else {
+                    showNotification('❌ ' + result.error, 'error');
+                }
+            } catch (error) {
+                showNotification('❌ Error al iniciar detección', 'error');
+            }
+        }
+
+        // DETENER DETECCIÓN
+        async function stopDetection() {
+            try {
+                const response = await fetch('/api/process/detection/stop', { method: 'POST' });
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification('⏹️ Detección detenida', 'info');
+                    updateStats();
+                } else {
+                    showNotification('❌ ' + result.error, 'error');
+                }
+            } catch (error) {
+                showNotification('❌ Error al detener detección', 'error');
+            }
+        }
+
+        // INICIAR TRACKING
+        async function startTracking() {
+            try {
+                const response = await fetch('/api/process/tracking/start', { method: 'POST' });
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification(`🎯 Tracking iniciado para ${result.suspicious_count} personas`, 'success');
+                    updateStats();
+                } else {
+                    showNotification('❌ ' + result.error, 'error');
+                }
+            } catch (error) {
+                showNotification('❌ Error al iniciar tracking', 'error');
+            }
+        }
+
+        // DETENER TRACKING
+        async function stopTracking() {
+            try {
+                const response = await fetch('/api/process/tracking/stop', { method: 'POST' });
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification('⏹️ Tracking detenido', 'info');
+                    updateStats();
+                } else {
+                    showNotification('❌ ' + result.error, 'error');
+                }
+            } catch (error) {
+                showNotification('❌ Error al detener tracking', 'error');
+            }
+        }
+
+        // GENERAR REPORTE
+        async function generateReport() {
+            try {
+                showNotification('⏳ Generando reporte...', 'info');
+                
+                const response = await fetch('/api/reports/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ type: 'general' })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification(`✅ Reporte generado: ${result.report_id}`, 'success');
+                    setTimeout(() => navigate('/reports'), 1500);
+                } else {
+                    showNotification('❌ Error generando reporte', 'error');
+                }
+            } catch (error) {
+                showNotification('❌ Error al generar reporte', 'error');
+            }
+        }
+
+        // INICIALIZACIÓN
+        updateStats();
+        updateEvents();
+        
+        // Actualizar cada 5 segundos
+        setInterval(updateStats, 5000);
+        setInterval(updateEvents, 10000);
+    </script>
+</body>
+</html>

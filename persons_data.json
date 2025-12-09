@@ -1338,5 +1338,15 @@
     "is_suspicious": false,
     "frames_tracked": 50,
     "duration": 18.878164529800415
+  },
+  "person_1764813383_1": {
+    "id": "person_1764813383_1",
+    "track_id": 1,
+    "image_path": "detected_persons/person_1764813383_1.jpg",
+    "timestamp": 1764813383,
+    "date": "2025-12-03 20:56:23",
+    "is_suspicious": false,
+    "frames_tracked": 50,
+    "duration": 15.79492974281311
   }
 }
